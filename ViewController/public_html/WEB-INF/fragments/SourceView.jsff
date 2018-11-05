@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core">
+  <af:panelGroupLayout id="pgl1" layout="vertical" styleClass="AFStretchWidth">
+    <af:panelGroupLayout id="pgl2" layout="horizontal" styleClass="AFStretchWidth" halign="center">
+      <af:outputText value="Source" id="ot1" inlineStyle="font-weight: bold;"/>
+    </af:panelGroupLayout>
+    <af:panelFormLayout id="pfl1">
+      <af:button text="Target" id="b1" action="#{pageFlowScope.sourceBean.toTarget}"/>
+    </af:panelFormLayout>
+  </af:panelGroupLayout>
+</jsp:root>

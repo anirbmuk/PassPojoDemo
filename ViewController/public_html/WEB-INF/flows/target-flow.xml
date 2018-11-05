@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="target-flow">
+    <default-activity>initTarget</default-activity>
+    <data-control-scope>
+      <isolated/>
+    </data-control-scope>
+    <input-parameter-definition id="__2">
+      <name>inputFortarget</name>
+      <value>#{pageFlowScope.targetBean.employeeInTarget}</value>
+      <class>demo.anirbanm.pojo.view.viewmodel.Employee</class>
+      <required/>
+    </input-parameter-definition>
+    <managed-bean id="__1">
+      <managed-bean-name>targetBean</managed-bean-name>
+      <managed-bean-class>demo.anirbanm.pojo.view.bean.TargetManager</managed-bean-class>
+      <managed-bean-scope>pageFlow</managed-bean-scope>
+    </managed-bean>
+    <view id="TargetView">
+      <page>/WEB-INF/fragments/TargetView.jsff</page>
+    </view>
+    <method-call id="initTarget">
+      <method>#{pageFlowScope.targetBean.initTarget}</method>
+      <outcome>
+        <fixed-outcome>initTarget</fixed-outcome>
+      </outcome>
+    </method-call>
+    <task-flow-return id="backToSource">
+      <outcome>
+        <name>backToSource</name>
+      </outcome>
+    </task-flow-return>
+    <control-flow-rule id="__3">
+      <from-activity-id>initTarget</from-activity-id>
+      <control-flow-case id="__4">
+        <from-outcome>initTarget</from-outcome>
+        <to-activity-id>TargetView</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__5">
+      <from-activity-id>TargetView</from-activity-id>
+      <control-flow-case id="__6">
+        <from-outcome>toSource</from-outcome>
+        <to-activity-id>backToSource</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

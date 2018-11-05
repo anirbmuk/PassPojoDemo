@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:panelGroupLayout id="pgl2" layout="horizontal" styleClass="AFStretchWidth" halign="center">
+        <af:outputText value="Target" id="ot1" inlineStyle="font-weight: bold;"/>
+        <af:button text="Source" id="b1" action="#{pageFlowScope.targetBean.toSource}"/>
+    </af:panelGroupLayout>
+</jsp:root>

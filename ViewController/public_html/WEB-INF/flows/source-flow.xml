@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="source-flow">
+    <default-activity>SourceView</default-activity>
+    <data-control-scope>
+      <isolated/>
+    </data-control-scope>
+    <managed-bean id="__3">
+      <managed-bean-name>sourceBean</managed-bean-name>
+      <managed-bean-class>demo.anirbanm.pojo.view.bean.SourceManager</managed-bean-class>
+      <managed-bean-scope>pageFlow</managed-bean-scope>
+    </managed-bean>
+    <view id="SourceView">
+      <page>/WEB-INF/fragments/SourceView.jsff</page>
+    </view>
+    <task-flow-call id="target-flow">
+      <task-flow-reference>
+        <document>/WEB-INF/flows/target-flow.xml</document>
+        <id>target-flow</id>
+      </task-flow-reference>
+      <input-parameter id="__4">
+        <name>inputFortarget</name>
+        <value>#{pageFlowScope.sourceBean.employeeInSource}</value>
+      </input-parameter>
+    </task-flow-call>
+    <method-call id="initSource">
+      <method>#{pageFlowScope.sourceBean.initSource}</method>
+      <outcome>
+        <fixed-outcome>initSource</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__1">
+      <from-activity-id>SourceView</from-activity-id>
+      <control-flow-case id="__2">
+        <from-outcome>toTarget</from-outcome>
+        <to-activity-id>target-flow</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__9">
+      <from-activity-id>initSource</from-activity-id>
+      <control-flow-case id="__10">
+        <from-outcome>initSource</from-outcome>
+        <to-activity-id>SourceView</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__11">
+      <from-activity-id>target-flow</from-activity-id>
+      <control-flow-case id="__12">
+        <from-outcome>backToSource</from-outcome>
+        <to-activity-id>initSource</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>
